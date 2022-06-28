@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><Pizza-perfect></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<style>
+    body {
+        background-color: #80ed99;
+        flex: 1;
+    }
+
+    .pizza {
+        background-color: #c7f9cc; border-radius: 1em;
+        
+    }
+    
+    .pizza {
+        
+        padding: 5px;
+        margin-bottom: 5px;
+        border-radius: 1em;
+        margin: 2px;
+
+    }
+
+    .large {
+        background-color: #38A3A5
+        
+    }
+
+    .medium {
+        background-color: greenyellow;
+        
+    }
+
+    .small {
+        background-color: #57CC99
+        
+    }
+
+    .header {
+        margin-bottom: 20px;
+
+    }
+
+    .footer {
+        background-color: #22577A;
+    }
+
+    .align {
+        text-align: center;
+    }
+    .box {
+    border: 3px solid rgb(15, 15, 15);
+    padding: 1 em;
+    margin: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 1em;
+
+
+}
+    
+
+     @media(min-width: 960px) {
+.pizzas {
+    display: flexbox;
+    background-color: red
+}
+.X{
+    display: flex;
+}
+       }
+       table {
+    border-collapse: collapse;
+    width: 20%;
+    margin-left:30%; 
+    margin-right:30%;
+    font-size: xx-large;
+}
+
+td {
+    text-align: center;
+    vertical-align: bottom;
+    /* height: 50px; */
+}
+th,
+td {
+padding: 15px;
+text-align: left;
+border: 1px solid #ccc;
+font-size: xx-large;
+
+}
+
+.nice  {
+    padding: 1em;
+    background-color: dodgerblue;
+    display: flex;
+    border-radius: 0.5em;
+    justify-content: center; } */
+    
+
+
+.nice {
+    text-align: center;
+}
+.mid{
+    text-align: center;
+}
+
+.btn{
+    width: 30%;
+    margin-left:35%; 
+    margin-right:35%;
+    font-size: xx-large;
+}
+.marg{
+    margin-left: 15%;
+}
+.mpic{
+    margin-bottom: 3em;
+}
+.spic{
+    margin-bottom: 4em;
+}
+.Head{
+    padding: 1em;
+    background-color: dodgerblue;
+margin-bottom: 0.2cm;
+
+}
+.input {
+    margin: 1em;
+}
+.btn {
+    padding: 0.5em 0em 0.5em 0em;
+    width: 5em;
+    background-color:azure;
+    color: rgb(61, 60, 60);
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    border-radius: 0.25em;
+    font-size: xx-large;
+}
+.btnn{
+    background-color:azure;
+    color: rgb(61, 60, 60);
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    width: 6em;
+
+}
+.message {
+    padding: 1em;
+    font-weight: bold;
+    background-color: rgb(177, 196, 195);
+    font-size: xx-large;
+}
+.cart {
+    width: 9em;
+    background-color:azure;
+    color: rgb(61, 60, 60);
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    border-radius: 0.5em
+    font-size: xx-large;
+}
+    
+
+
+
+
+</style>
+<body>
+    
+    <div class="highest" x-data="{showCart: false, 
+        largeTotal: 0, largeQty:0,
+         mediumTotal: 0, mediumQty:0, 
+         smallTotal: 0, smallQty:0, 
+         paymentAmount: 0,
+         paymentMessage: '',
+         cartTotal(){
+            return this.largeTotal + this.mediumTotal + this.smallTotal;
+         },
+
+         makePayment(){
+            if (!this.paymentAmount){
+                this.paymentMessage = 'Oops, amount added!'
+            }
+            if (this.paymentAmount >= this.cartTotal() ){
+                this.paymentMessage = 'PAYMENT APPROVED'
+                setTimeout(() => {
+                    this.payNow = false;
+                    this.clearCart()
+                },3000);
+            }
+                
+                else{
+                    this.paymentMessage = 'PAYMENT DECLINED! TRY AGAIN!!!';
+                }
+         },
+         clearCart(){
+           this.largeTotal= 0;
+           this.largeQty = 0;
+           this.mediumTotal = 0;
+           this.mediumQty = 0 ;
+           this.smallTotal = 0; 
+           this.smallQty = 0; 
+         }
+        }">
+         
+        
+        <div class="Head">
+            <h1> MONATE PERFECT PIZZA</h1>
+        </div >
+ <h2 style="color: rgb(119, 23, 128);">Monate pizza,taste like heaven</h2>
+        
+        
+        <div class="cartb" >
+            <div>
+                <button x-on:click="showCart=true">
+                    <img src="data:image/jpeg;base64,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" width="75" alt="">
+                    <h2>show cart </h2>
+                </button>     
+                
+
+            <strong x-show="quantityTotal() > 0">
+                There are <span x-text="quantityTotal().toFixed()">  </span> Pizzas in the cart
+            </strong>
+
+        </a>
+                
+
+            </div>
+            <div>
+            <div class="cart-Box">
+                <div class="cart" x-show="showCart">
+                    <div>
+                        <button x-on:click="showCart=false">
+                            <img src="data:image/jpeg;base64,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" width="45" alt="">
+                            <h2>close Cart</h2>
+                        </button>
+
+            </div>
+
+
+
+
+
+            <table style="width:30%;">
+    
+                    <td> <strong>Small</strong></td>
+                
+                <td><span x-text="smallQty"></span></td>
+                <td> <button x-on:click="smallTotal+=25; smallQty+=1; ">+</button> </td>
+                <td> <button x-on:click="if(smallQty>0){smallTotal-=25; smallQty-=1}">-</button> </td>
+                <td><span>R</span></td>
+                <td x-text="smallTotal"></td>
+                </tr>
+                
+                <tr>
+                    <td> <strong>Medium</strong></td>
+                    <td><span x-text="mediumQty"></span></td>
+                    <td> <button @click="mediumTotal+=89; mediumQty+=1;">+</button> </td>
+                    <td> <button @click="if(mediumTotal>0){mediumTotal-=89; mediumQty-=1}">-</button> </td>
+                    <td><span>R</span></td>
+                    <td x-text="mediumTotal"></td>
+                    </tr>
+                
+                    <tr>
+                        <td> <strong>Large</strong></td>
+                        <td><span x-text="largeQty"></span></td>
+                        <td> <button @click="largeTotal+=129; largeQty+=1;">+</button> </td>
+                        <td> <button @click="if(largeQty > 0) {largeTotal-=129; largeQty-=1}">-</button> </td>
+                        <td><span>R</span></td>
+                        <td x-text ="largeTotal"></td>
+                        </tr>
+                        <tr>
+                            <td> <strong>Total cost</strong></td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <b><strong> <td><span>R</span></td></strong></b>
+                         <b> <strong> <td  x-text="cartTotal()" ></td></strong></b>
+                            </tr>
+                </table>
+                       <div >
+                       <div class="message" x-text="paymentMessage"> </div>
+                        <label for=""><h2>Payment Amount</h2></label>
+                        <input class="input" type="number" placeholder="Payment amount" x-model="paymentAmount">
+                        <button x-on:click="makePayment" class="btnn"><h2>PAYMENT</h2></button>
+                </div>
+            </div>
+    <div class="X" >
+            <div class= "pizza small pizza" >
+            <h1>small pizza</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTRGvaqOVrCBKvbiL2SH7skioWxV0-rzfBjg&usqp=CAU" alt="" width="300" >
+            <img src="sprit.png.jpg" alt="" width="150" >
+            
+            <h1>R25.00</h1>
+            <div><h2> Creamy chicken
+                  mashroom and herbs,
+                  tossed in penne pasta, 
+                  tapped in mozzarella & cheddar cheese.creamy chicken
+                  mashroom and herbs,
+                  tossed in penne pasta, 
+                  tapped in mozzarella & cheddar cheese,2 Numbers pizza base readymade
+                  100 grams onion chopped
+                  100 grams tomato chopped
+                  70 grams capsicum ( green pepper) chopped
+                  50 grams mushroom sliced.Veggie sausage
+                  Bell peppers
+                  Red onion
+                  Olives
+                  Pickled Jalapeños</h2>
+                </div>
+                <div style="text-align: center; padding: 40px; padding-top: 70px;"> 
+                    <button style="font-size:large; width:150px;" x-on:click="smallTotal+=25; smallQty+=1;">Buy</button> 
+                </div>
+            </div>
+
+            
+        
+        <div class="pizza large pizza">
+            <h1>Large Pizza</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Zyu-T5WQ7bLxROPZPWo7u65WqNKpnk7NWQ&usqp=CAU" alt="" width="500">
+            <img src="fanta orange.png.jpg" alt="" width="450" >
+            <h1>R129</h1>
+            <div>,<h2> Peri-Peri chicken,creamy chicken
+                mashroom and herbs,
+                tossed in penne pasta, 
+                tapped in mozzarella & cheddar cheese,2 Numbers pizza base readymade
+                100 grams onion chopped
+                100 grams tomato chopped
+                70 grams capsicum ( green pepper) chopped
+                50 grams mushroom sliced.Veggie sausage
+                Bell peppers
+                Red onion
+                Olives
+                Pickled Jalapeños
+    
+                <span>mayo tossed in penne pasta,</span> 
+    
+                tapped in mozzarella & cheddar cheese</h2>></div>
+                
+                <div style="text-align: center; padding: 40px; padding-top: 70px;"> 
+                    <button style="font-size:large; width:150px;" @click="largeTotal+=129; largeQty+=1;">Buy</button> 
+                </div>
+    
+        </div>
+        <div class="pizza medium pizza" >
+            <h1>medium pizza</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNWVlZxNHxQI5YXCbL8o5_qxkf0K7Q-W9cfw&usqp=CAU" alt="" width="400" style="border-radius: ;0.25em">
+            <img src="coke.png.jpg" alt="" width="550" >
+            <div class="pizza">
+    
+                <h1>R89.00</h1>
+                <h2> chicken
+                    mashroom and herbs,
+                    tossed in penne pasta, 
+                    tapped in mozzarella & cheddar cheese,2 Numbers pizza base readymade
+                    100 grams onion chopped
+                    100 grams tomato chopped
+                    70 grams capsicum ( green pepper) chopped
+                    50 grams mushroom sliced.Veggie sausage
+                    Bell peppers
+                    Red onion
+                    Olives
+                    Pickled Jalapeños
+                </h2></div>
+                    <div style="text-align: center; padding: 40px; padding-top: 70px;"> 
+                        <button style="font-size:large; width:150px;" @click="mediumTotal+=89; mediumQty+=1;showCheckout=true; showCart=true;">Buy</button> 
+                    </div>
+        
+                </div>
+        </div>
+        <div class="pizza footer">
+            <h2>contact details</h2>
+            0727345758  info@pizzaFf.com
+            <h2>facebook</h2>
+            sammydollar97
+            <h3>instagram</h3>
+            Mr PIZZA
+    
+    
+        </div>
+    </div>
+    
+    </body>
+    
+    </html>
